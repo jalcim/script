@@ -9,14 +9,36 @@ int main()
   if (!(fd = recup_pipe_creat(NULL)))
     printf("error recup pipe creat\n");
   write(fd[1], "c", 1);
-  write(fd[1], "variable\0", 9);
+  write(fd[1], "variable1\0", 10);
   if ('c' == whoistype())
     creat_char();
 
   if (!(fd = recup_pipe_init(NULL)))
     printf("error recup pipe init\n");
-  write(fd[1], "variable\0", 9);
-  write(fd[1], "hello world\0", 12);
+  write(fd[1], "variable1\0", 10);
+  write(fd[1], "yoooo man\0", 10);
+  init_char();
+
+  if (!(stack = recup_stack(NULL)))
+    printf("error recup stack\n");
+  if (stack && stack->stack_c && stack->stack_c->name)
+    printf("name = :%s:\n", stack->stack_c->name);
+  if (stack && stack->stack_c && stack->stack_c->var)
+    printf("value = :%s:\n", stack->stack_c->var);
+  //  recup_pipe_creat((int *)-1);
+  //recup_pipe_init((int *)-1);
+
+  if (!(fd = recup_pipe_creat(NULL)))
+    printf("error recup pipe creat\n");
+  write(fd[1], "c", 1);
+  write(fd[1], "variable2\0", 10);
+  if ('c' == whoistype())
+    creat_char();
+
+  if (!(fd = recup_pipe_init(NULL)))
+    printf("error recup pipe init\n");
+  write(fd[1], "variable2\0", 10);
+  write(fd[1], "yessai\0", 7);
   init_char();
 
   if (!(stack = recup_stack(NULL)))
