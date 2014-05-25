@@ -28,7 +28,11 @@ struct s_bloc //'{' '('
   int bc_max;
 
   t_bloc *next;
-  //M3	liste chaine de block
+  /*	M3
+    liste chaine de block
+    ou 
+    tableau de structure block
+  */
 };
 
 struct s_ref
@@ -70,7 +74,4 @@ char *read_buffer(int *fd);
 void init();
 void creat_char();
 void init_char();
-void concat_char();
 char *ft_fd_in_str(int fd);
-t_data *data_select(int *fd);
-void ft_fusion(char **buffer, char *tmp);

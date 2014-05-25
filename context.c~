@@ -28,13 +28,6 @@ int main()
   //  recup_pipe_creat((int *)-1);
   //recup_pipe_init((int *)-1);
 
-  if (!(fd = recup_pipe_creat(NULL)))
-    printf("error recup pipe creat\n");
-  write(fd[1], "c", 1);
-  write(fd[1], "variable2\0", 10);
-  if ('c' == whoistype())
-    creat_char();
-
   if (!(fd = recup_pipe_init(NULL)))
     printf("error recup pipe init\n");
   write(fd[1], "variable2\0", 10);
@@ -106,7 +99,6 @@ void init_char()
   t_data *data;
   int *fd;
 
-  printf("initialisation de la variable\n");
   if (!(fd = recup_pipe_init(NULL)))
     printf("error recup pipe init\n");
   data = data_select(fd);
@@ -119,9 +111,8 @@ void concat_char()
   int *fd;
   char *cat;
 
-  printf("concatenation de la variable\n");
   if (!(fd = recup_pipe_init(NULL)))
-    printf("error recup pipe concat\n");
+    printf("error recup pipe init\n");
   data = data_select(fd);
   cat = read_buffer(fd);
   ft_fusion(&data->stack_c->var, cat);
@@ -136,6 +127,7 @@ t_data *data_select(int *fd)
 
   char *name;
 
+  printf("initialisation de la variable\n");
   name = read_buffer(fd);
   stack = recup_stack(NULL);
 
